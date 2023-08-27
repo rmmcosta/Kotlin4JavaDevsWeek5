@@ -32,7 +32,7 @@ fun <T : Any> List<T?>.moveAndMergeEqual(merge: (T) -> T): List<T> {
     }
     return localMergeList*/
     val withoutNulls = this.filterNotNull()
-    println("withoutNulls: $withoutNulls")
+    //println("withoutNulls: $withoutNulls")
     val localMergeList = mutableListOf<T>()
     var skipNext = false
 
