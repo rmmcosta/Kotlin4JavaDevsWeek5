@@ -23,6 +23,8 @@ private fun countInversions(permutation: List<Int>): Int {
     }
     return count
 }*/
+/*
+// by using the merge sort algorithm. This approach computes the number of inversions more efficiently in O(n log n) time, as opposed to the above O(n^2) time complexity
 fun isEven(permutation: List<Int>): Boolean = countInversions(permutation).second % 2 == 0
 
 private fun countInversions(permutation: List<Int>): Pair<List<Int>, Int> {
@@ -67,4 +69,15 @@ private fun mergeAndCountInversions(left: List<Int>, right: List<Int>): Pair<Lis
     }
 
     return Pair(merged, inversions)
+}*/
+
+
+//has a time complexity of O(n^2), so it may not be fast enough for large lists
+fun isEven(permutation: List<Int>): Boolean {
+    val count = permutation.withIndex().flatMap { (i, pi) ->
+        permutation.withIndex().mapNotNull { (j, pj) ->
+            if (i < j && pi > pj) 1 else null
+        }
+    }.sum()
+    return count % 2 == 0
 }
