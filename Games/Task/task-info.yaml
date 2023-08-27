@@ -271,14 +271,14 @@ files:
 - name: src/games/gameOfFifteen/GameOfFifteen.kt
   visible: true
   placeholders:
-  - offset: 385
-    length: 6
+  - offset: 468
+    length: 2882
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 385
     initialized_from_dependency: false
-    selected: false
+    selected: true
     status: Unchecked
   text: |+
     package games.gameOfFifteen
@@ -329,13 +329,13 @@ files:
   visible: true
   placeholders:
   - offset: 576
-    length: 6
+    length: 155
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 576
     initialized_from_dependency: false
-    selected: false
+    selected: true
     status: Unchecked
   text: |+
     package games.gameOfFifteen
@@ -1610,6 +1610,9 @@ files:
   visible: false
   text: ufQQSL2qEeioYgpHPBWO4A
   learner_created: false
+- name: test/games/gameOfFifteen/MyTestGameOfFifteen.kt
+  visible: true
+  learner_created: true
 feedback_link: https://www.coursera.org/learn/kotlin-for-java-developers/programming/NSid0/game-2048-game-of-fifteen/discussions
 status: Unchecked
 record: -1
