@@ -6,6 +6,7 @@ import board.GameBoard
 import board.createGameBoard
 import games.game.Game
 import games.game2048.moveAndMergeEqual
+import kotlin.math.ceil
 
 /*
  * Your task is to implement the game 2048 https://en.wikipedia.org/wiki/2048_(video_game).
@@ -42,7 +43,10 @@ class Game2048(private val initializer: Game2048Initializer<Int>) : Game {
  * Add a new value produced by 'initializer' to a specified cell in a board.
  */
 fun GameBoard<Int?>.addNewValue(initializer: Game2048Initializer<Int>) {
-    TODO()
+    val newValue = initializer.nextValue(this)
+    if(newValue!=null) {
+        this[newValue.first] = newValue.second
+    }
 }
 
 /*
@@ -54,7 +58,7 @@ fun GameBoard<Int?>.addNewValue(initializer: Game2048Initializer<Int>) {
  * Return 'true' if the values were moved and 'false' otherwise.
  */
 fun GameBoard<Int?>.moveValuesInRowOrColumn(rowOrColumn: List<Cell>): Boolean {
-    val gameBoardCells: List<Int?> = rowOrColumn.map { cell: Cell -> this[cell] }
+    /*val gameBoardCells: List<Int?> = rowOrColumn.map { cell: Cell -> this[cell] }
     val listWithMerge = gameBoardCells.moveAndMergeEqual { it * 2 }
     for ((index, cell) in rowOrColumn.withIndex()) {
         if (index <= listWithMerge.lastIndex) {
@@ -63,6 +67,15 @@ fun GameBoard<Int?>.moveValuesInRowOrColumn(rowOrColumn: List<Cell>): Boolean {
             this[cell] = null
         }
     }
+    return listWithMerge.size != rowOrColumn.size*/
+    val gameBoardCells: List<Int?> = rowOrColumn.map { cell: Cell -> this[cell] }
+    val listWithMerge = gameBoardCells.moveAndMergeEqual { it * 2 }
+    val newValues = listWithMerge + List(rowOrColumn.size - listWithMerge.size) { null }
+
+    rowOrColumn.zip(newValues).forEach { (cell, value) ->
+        this[cell] = value
+    }
+
     return listWithMerge.size != rowOrColumn.size
 }
 
